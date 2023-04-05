@@ -2,3 +2,7 @@
     width: 17rem;
     display: flex;
 }
+
+.box {
+    border: 1px solid blue;
+}

@@ -9,7 +9,12 @@
         <div>
             <lightning-layout multiple-rows="true">
                 <template for:each={accountsToDisplay} for:item="account">
-                    <lightning-layout-item key={account.Id} class="slds-p-around_small">
+                    <lightning-layout-item
+                        key={account.id}
+                        class="slds-p-around_small"
+                        onclick={handleClick}
+                        data-record-id={account.id}
+                        >
                         <c-account_tile
                             account={account}>
                         </c-account_tile>

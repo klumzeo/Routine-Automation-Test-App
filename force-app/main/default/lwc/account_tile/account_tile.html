@@ -1,23 +1,26 @@
 <template>
-    <div class="tile slds-grid slds-grid_vertical">
+    <div
+        class={account.classValue}
+        onmouseenter={handleFocus}
+        onmouseleave={handleLeave}>
         <div class="slds-col">
             <lightning-formatted-rich-text
-                value={account.Account_Image__c}
+                value={account.accountImage}
             ></lightning-formatted-rich-text>
         </div>
         <div class="slds-col">
-            Name: {account.Name}
+            Name: {account.name}
         </div>
         <div class="slds-col">
-            Type: {account.Type}
+            Type: {account.type}
         </div>
         <div class="slds-col">
-            Length: {account.Number_of_Employees__c}
+            Length: {account.numberOfEmployees}
         </div>
         <div class="slds-col">
             Price:
             <lightning-formatted-number
-                value={account.Budget__c}
+                value={account.budget}
                 format-style="currency"
                 currency-code="USD">
             </lightning-formatted-number>
