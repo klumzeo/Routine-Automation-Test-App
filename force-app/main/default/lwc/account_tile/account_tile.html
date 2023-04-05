@@ -1,0 +1,26 @@
+<template>
+    <div class="tile slds-grid slds-grid_vertical">
+        <div class="slds-col">
+            <lightning-formatted-rich-text
+                value={account.Account_Image__c}
+            ></lightning-formatted-rich-text>
+        </div>
+        <div class="slds-col">
+            Name: {account.Name}
+        </div>
+        <div class="slds-col">
+            Type: {account.Type}
+        </div>
+        <div class="slds-col">
+            Length: {account.Number_of_Employees__c}
+        </div>
+        <div class="slds-col">
+            Price:
+            <lightning-formatted-number
+                value={account.Budget__c}
+                format-style="currency"
+                currency-code="USD">
+            </lightning-formatted-number>
+        </div>
+    </div>
+</template>

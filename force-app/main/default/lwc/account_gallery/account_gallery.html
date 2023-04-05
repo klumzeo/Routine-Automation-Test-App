@@ -1,8 +1,21 @@
 <template>
-    <lightning-card title="Lightning Web Component" icon-name="custom:custom14">
-		<div class="slds-var-m-around_medium">
-			<h2>Hello World!</h2>
-		</div>
-        <c-account-type-selector></c-account-type-selector>
+    <lightning-card>
+        <div class="pickList">
+            <c-account_type_selector
+                options={accountTypes}
+                ontypechanged={handleTypeChanged}>
+            </c-account_type_selector>
+        </div>
+        <div>
+            <lightning-layout multiple-rows="true">
+                <template for:each={accountsToDisplay} for:item="account">
+                    <lightning-layout-item key={account.Id} class="slds-p-around_small">
+                        <c-account_tile
+                            account={account}>
+                        </c-account_tile>
+                    </lightning-layout-item>
+                </template>
+            </lightning-layout>
+        </div>
 	</lightning-card>
 </template>
