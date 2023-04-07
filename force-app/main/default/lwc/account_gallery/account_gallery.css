@@ -1,9 +1,8 @@
+@import 'c/css_common_classes';
+
 .pickList {
     position: relative;
     width: 15rem;
     left: 40%;
-}
-
-.slds-box {
-    border: 4px solid blue;
+    padding-bottom: 2rem;
 }

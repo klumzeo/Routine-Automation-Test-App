@@ -6,21 +6,27 @@
                 ontypechanged={handleTypeChanged}>
             </c-account_type_selector>
         </div>
-        <div>
+        <template lwc:if={accountsToDisplay.length}>
             <lightning-layout multiple-rows="true">
                 <template for:each={accountsToDisplay} for:item="account">
                     <lightning-layout-item
                         key={account.id}
                         class="slds-p-around_small"
                         onclick={handleClick}
-                        data-record-id={account.id}
-                        >
+                        data-record-id={account.id}>
                         <c-account_tile
-                            account={account}>
+                            data-id={account.id}
+                            account={account}
+                            onaccountselect={handleAccountSelect}>
                         </c-account_tile>
                     </lightning-layout-item>
                 </template>
             </lightning-layout>
-        </div>
+        </template>
+        <template lwc:else>
+            <div class="nothingSelected">
+                There are no Accounts with this type. Try again later.
+            </div>
+        </template>
 	</lightning-card>
 </template>

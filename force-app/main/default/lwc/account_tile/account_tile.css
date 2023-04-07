@@ -3,6 +3,10 @@
     display: flex;
 }
 
-.box {
-    border: 1px solid blue;
+.selectedBox {
+    border: 2px solid blue;
+}
+
+.pointedBox {
+    border: 2px solid yellow;
 }

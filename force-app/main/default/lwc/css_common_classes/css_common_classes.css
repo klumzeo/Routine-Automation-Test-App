@@ -1,0 +1,8 @@
+.nothingSelected {
+    height: 5rem;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    position: relative;
+    margin-left: 40%;
+}

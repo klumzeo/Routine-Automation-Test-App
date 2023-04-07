@@ -1,12 +1,12 @@
 public with sharing class AccountGalleryController {
 
     @AuraEnabled
-    public static ResultWrapper getAccountByType() {
+    public static ResultWrapper getAccounts() {
         List<Account> accountList = [
-            SELECT Id, Name, Type, Account_Image__c, Number_of_Employees__c, Budget__c
+            SELECT Id, Name, Type, Account_Image__c, Number_of_Employees__c, Budget__c, Industry, Description,
+                Owner.Name
             FROM Account
-            WHERE Number_of_Employees__c != null
-            LIMIT 5
+            WHERE CreatedDate > 2023-04-04T21:33:23.000+0000
         ];
 
         List<AccountWrapper> accountWrapperList = new List<AccountWrapper>();
@@ -18,6 +18,9 @@ public with sharing class AccountGalleryController {
                     account.Name,
                     account.Type,
                     account.Account_Image__c,
+                    account.Industry,
+                    account.Description,
+                    account.Owner.Name,
                     account.Number_of_Employees__c,
                     account.Budget__c
                 )
@@ -53,9 +56,15 @@ public with sharing class AccountGalleryController {
         @AuraEnabled
         public String type;
         @AuraEnabled
+        public String classValue;
+        @AuraEnabled
         public String accountImage;
         @AuraEnabled
-        public String classValue;
+        public String industry;
+        @AuraEnabled
+        public String description;
+        @AuraEnabled
+        public String ownerName;
         @AuraEnabled
         public Decimal numberOfEmployees;
         @AuraEnabled
@@ -66,6 +75,9 @@ public with sharing class AccountGalleryController {
             String name,
             String type,
             String accountImage,
+            String industry,
+            String description,
+            String ownerName,
             Decimal numberOfEmployees,
             Decimal budget
         ) {
@@ -73,12 +85,16 @@ public with sharing class AccountGalleryController {
             this.name = name;
             this.type = type;
             this.accountImage = accountImage;
+            this.industry = industry;
+            this.description = description;
+            this.ownerName = ownerName;
             this.numberOfEmployees = numberOfEmployees;
             this.budget = budget;
             this.classValue = 'tile slds-grid slds-grid_vertical';
         }
     }
 
+    @TestVisible
     public class ResultWrapper {
         @AuraEnabled
         public List<AccountWrapper> accountList;
@@ -91,6 +107,7 @@ public with sharing class AccountGalleryController {
         }
     }
 
+    @TestVisible
     public class AccountType {
         @AuraEnabled
         public String label;

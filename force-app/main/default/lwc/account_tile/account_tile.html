@@ -1,29 +1,41 @@
 <template>
-    <div
-        class={account.classValue}
-        onmouseenter={handleFocus}
-        onmouseleave={handleLeave}>
-        <div class="slds-col">
-            <lightning-formatted-rich-text
-                value={account.accountImage}
-            ></lightning-formatted-rich-text>
-        </div>
-        <div class="slds-col">
-            Name: {account.name}
-        </div>
-        <div class="slds-col">
-            Type: {account.type}
-        </div>
-        <div class="slds-col">
-            Length: {account.numberOfEmployees}
-        </div>
-        <div class="slds-col">
-            Price:
-            <lightning-formatted-number
-                value={account.budget}
-                format-style="currency"
-                currency-code="USD">
-            </lightning-formatted-number>
+    <div class="tile slds-grid slds-grid_vertical">
+        <div
+            data-id="accountTile"
+            class={classValue}
+            onclick={handleAccountChoice}
+            onmouseenter={handleFocus}
+            onmouseleave={handleLeave}>
+            <div class="slds-col">
+                <template if:true={account.accountImage}>
+                    <lightning-formatted-rich-text class="accImg"
+                        value={account.accountImage}>
+                    </lightning-formatted-rich-text>
+                </template>
+                <template if:false={account.accountImage}>
+                    <img style="max-height: 400px" alt="Default Account Pic" src={defaultPic}/>
+                </template>
+            </div>
+            <div class="slds-col">
+                Name: {account.name}
+            </div>
+            <div class="slds-col">
+                Owner: {account.ownerName}
+            </div>
+            <div class="slds-col">
+                Type: {account.type}
+            </div>
+            <div class="slds-col">
+                Employees: {account.numberOfEmployees}
+            </div>
+            <div class="slds-col">
+                Price:
+                <lightning-formatted-number
+                    value={account.budget}
+                    format-style="currency"
+                    currency-code="USD">
+                </lightning-formatted-number>
+            </div>
         </div>
     </div>
 </template>

@@ -1,0 +1,12 @@
+@import 'c/css_common_classes';
+
+.hideContent {
+    overflow: hidden;
+    line-height: 1rem;
+    height: 2rem;
+}
+
+.showContent {
+    line-height: 1rem;
+    height: auto;
+}

@@ -1,7 +1,52 @@
 <template>
-    <lightning-card>
-		<div class="slds-var-m-around_medium" if:true={recordId}>
-			<h2>{recordId.name}</h2>
-		</div>
-	</lightning-card>
+    <article class="slds-card">
+        <div class="slds-grid slds-grid_vertical">
+            <div if:true={record} class="slds-col">
+                <lightning-card variant="Narrow" title={record.name} icon-name="standard:account">
+                    <lightning-button
+                        slot="actions"
+                        data-record-id={record.id}
+                        variant="brand-outline"
+                        label="Full Details"
+                        onclick={handleClick}>
+                    </lightning-button>
+                    <div class="slds-grid slds-grid_vertical slds-p-left_medium">
+                        <template for:each={fieldsToDisplay} for:item="field">
+                            <div key={field.label} class="slds-grid slds-p-right_small">
+                                <div class="slds-col slds-size_6-of-12">
+                                    {field.label}
+                                </div>
+                                <div if:true={field.isNumber}>
+                                    <lightning-formatted-number
+                                        class="slds-col slds-size_6-of-12"
+                                        value={field.value}
+                                        format-style="currency"
+                                        currency-code="USD">
+                                    </lightning-formatted-number>
+                                </div>
+                                <div if:false={field.isNumber} class="slds-col slds-size_6-of-12">
+                                    <div if:true={field.needToShowLess}>
+                                        <div class="content hideContent">
+                                            {field.value}
+                                        </div>
+                                        <div class="show-more">
+                                            <a onclick={handleClickLessMore}>{showLabel}</a>
+                                        </div>
+                                    </div>
+                                    <div if:false={field.needToShowLess}>
+                                        {field.value}
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </lightning-card>
+            </div>
+            <div if:false={record}>
+                <div class="nothingSelected">
+                    Nothing selected yet
+                </div>
+            </div>
+        </div>
+      </article>
 </template>
